@@ -1,0 +1,7 @@
+{
+  "name": "reactive-herald-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
