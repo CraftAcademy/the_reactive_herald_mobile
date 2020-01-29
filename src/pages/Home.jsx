@@ -6,17 +6,16 @@ const Home = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ionic Blank</IonTitle>
+          <IonTitle>The Reactive Herald </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        The world is your oyster.
         <p>
-          If you get lost, the{' '}
+          This is the  best mobile news app.{' '}
           <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/">
-            docs
+            Subscribe Here!
           </a>{' '}
-          will be your guide.
+          WELCOME!
         </p>
       </IonContent>
     </IonPage>
