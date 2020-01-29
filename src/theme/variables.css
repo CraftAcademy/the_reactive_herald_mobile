@@ -75,9 +75,6 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
-
-.content {
-  white-space: pre-line;
-  background-color: #24d6ea;
-  color: red;
+ion-item {
+  --min-height: 100px;
 }
