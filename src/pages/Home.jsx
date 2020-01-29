@@ -1,7 +1,22 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
+import React,{useEffect, useState} from 'react';
+import axios from 'axios';
 
-const Home = () => {
+const Home = (props) => {
+
+  const [articles, setArticles] = useState ({})
+
+  useEffect(() => {
+    getArticles().then(resp => {
+      setArticles(resp)
+    })
+  }, [])
+  const getArticles = async () => {
+    let resp = await axios.get ('https://reactive-herald-api.herokuapp.com/api/v1/articles/')
+    return resp.data.articles
+  
+  }
+  debugger
   return (
     <IonPage>
       <IonHeader>
