@@ -20,7 +20,8 @@ const Home = () => {
   articleItems = articles.map(article => {
     return (
       <IonItem Key ={articles.id}>
-        <IonLabel>{article.title}</IonLabel>
+        <IonTitle>{article.title}</IonTitle>
+        <IonContent>{article.body}</IonContent>
       </IonItem>
     )
   })
