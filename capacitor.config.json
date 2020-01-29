@@ -1,8 +1,8 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "reactive-herald-mobile",
+  "appId": "co.craftacedemy.reactiveHerald",
+  "appName": "reactiveHerald",
   "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "build",
+  "npmClient": "yarn",
+  "webDir": "www",
   "cordova": {}
 }
