@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonList } from '@ionic/react';
 import React,{useEffect, useState} from 'react';
 import axios from 'axios';
-
+import '../theme/variables.css'
 const Home = () => {
 
   const [articles, setArticles] = useState ({})
@@ -20,8 +20,7 @@ const Home = () => {
   articleItems = articles.map(article => {
     return (
       <IonItem Key ={articles.id}>
-        <IonTitle>{article.title}</IonTitle>
-        <IonContent>{article.body}</IonContent>
+        <IonContent><h3>{article.title}</h3>{article.body}</IonContent>
       </IonItem>
     )
   })
