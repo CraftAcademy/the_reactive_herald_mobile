@@ -11,20 +11,23 @@ import {
   IonPage
 } from "@ionic/react";
 import auth from "../services/auth";
+import { connect } from "react-redux";
 
-const LoginForm = () => {
+
+const LoginForm = props => {
 
   const onLogin = event => {
     event.preventDefault();
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
-        console.log(userDatas.data.email);
+        props.changeMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        console.log(error.response.data.errors);
+        props.changeMessage(error.message);
       });
   };
+
 
   return (
     <IonPage>
@@ -45,8 +48,22 @@ const LoginForm = () => {
           </IonItem>
           <IonButton type="submit">Log in</IonButton>
         </form>
+        {props.message}
       </IonContent>
     </IonPage>
   );
 };
-export default LoginForm;
+
+const mapStateToProps = state => ({
+  message: state.message
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeMessage: msg => {
+      dispatch({ type: "CHANGE_MESSAGE", payload: msg });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
