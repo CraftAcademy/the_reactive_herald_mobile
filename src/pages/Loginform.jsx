@@ -8,8 +8,7 @@ import {
   IonItem,
   IonLabel,
   IonButton,
-  IonPage,
-  IonText
+  IonPage
 } from "@ionic/react";
 import auth from "../services/auth";
 import { connect } from "react-redux";

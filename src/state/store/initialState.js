@@ -1,5 +1,6 @@
 const initialState = {
   message: "",
-  authenticated: false
+  authenticated: false,
+  language: "en"
 }
 export default initialState

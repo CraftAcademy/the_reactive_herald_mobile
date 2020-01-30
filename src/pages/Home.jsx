@@ -45,7 +45,7 @@ const Home = props => {
   if (articles.length > 0) {
     articleItems = articles.map(article => {
       return (
-        <IonItem Key={articles.id}>
+        <IonItem Key={articles.id} routerLink={`/articles/${article.id}`}>
           <IonContent>
             <h3>{article.title}</h3>
             {article.body}

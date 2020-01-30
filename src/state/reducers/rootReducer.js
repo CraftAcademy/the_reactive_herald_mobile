@@ -12,6 +12,12 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       authenticated: action.payload
     };
+    case "CHANGE_ARTICLE":
+      debugger
+    return {
+      ...state,
+      currentArticle: action.payload
+    };
     default:
       return {
         ...state
