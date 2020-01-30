@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-
+import React from "react";
 import {
   IonHeader,
   IonTitle,
   IonToolbar,
   IonContent,
   IonInput,
-  IonList,
   IonItem,
   IonLabel,
   IonButton,
@@ -16,17 +14,15 @@ import auth from "../services/auth";
 
 const LoginForm = () => {
 
-  const [message, setMessage] = useState("")
-
   const onLogin = event => {
     event.preventDefault();
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
-        setMessage(userDatas.data.email)
+        console.log(userDatas.data.email);
       })
       .catch(error => {
-        setMessage(error.response.data.errors)
+        console.log(error.response.data.errors);
       });
   };
 

@@ -6,14 +6,10 @@ import {
   IonToolbar,
   IonItem,
   IonList,
-  IonButton,
-  IonLabel,
-  IonInput
+  IonButton
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import auth from "../services/auth";
-import LoginForm from "./Loginform";
 import "../theme/variables.css";
 
 const Home = () => {
