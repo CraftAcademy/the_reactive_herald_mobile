@@ -19,9 +19,7 @@ const Home = props => {
   const [articles, setArticles] = useState({});
 
   const getArticles = async () => {
-    let resp = await axios.get(
-      "https://reactive-herald-api.herokuapp.com/api/v1/articles"
-    );
+    let resp = await axios.get("/articles");
     setArticles(resp.data.articles);
   };
 
@@ -45,7 +43,14 @@ const Home = props => {
   if (articles.length > 0) {
     articleItems = articles.map(article => {
       return (
-        <IonItem Key={articles.id} routerLink={`/articles/${article.id}`}>
+        <IonItem
+          class="list-item"
+          Key={articles.id}
+          onClick={() => {
+            props.changeCurrentArticleId(`${article.id}`);
+          }}
+          routerLink={`/articles/${article.id}`}
+        >
           <IonContent>
             <h3>{article.title}</h3>
             {article.body}
@@ -84,6 +89,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeAuthenticated: auth => {
       dispatch({ type: "CHANGE_AUTH", payload: auth });
+    },
+    changeCurrentArticleId: id => {
+      dispatch({ type: "CHANGE_ARTICLE_ID", payload: id });
     }
   };
 };

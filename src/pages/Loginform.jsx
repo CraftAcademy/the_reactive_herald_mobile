@@ -19,7 +19,7 @@ const LoginForm = props => {
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
-        props.history.push('/home')
+        props.history.push("/home");
         props.changeAuthenticated(!props.authenticated);
         props.changeMessage(`Logged in as: ${userDatas.data.email}`);
       })
@@ -30,26 +30,29 @@ const LoginForm = props => {
 
   return (
     <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle id="header" routerLink="/home">The Reactive Herald </IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        {!props.authenticated && 
-          <IonContent>
-            <form onSubmit={onLogin}>
-              <IonItem>
-                <IonLabel>Email</IonLabel>
-                <IonInput type="email" name="email" />
-              </IonItem>
-              <IonItem>
-                <IonLabel>Password</IonLabel>
-                <IonInput type="password" name="password" />
-              </IonItem>
-              <IonButton type="submit">Log in</IonButton>
-            </form>
-          </IonContent>
-        }
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle id="header" routerLink="/home">
+            The Reactive Herald{" "}
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      {!props.authenticated && (
+        <IonContent>
+          <form onSubmit={onLogin}>
+            <IonItem>
+              <IonLabel>Email</IonLabel>
+              <IonInput type="email" name="email" />
+            </IonItem>
+            <IonItem>
+              <IonLabel>Password</IonLabel>
+              <IonInput type="password" name="password" />
+            </IonItem>
+            <IonButton type="submit">Log in</IonButton>
+          </form>
+          <IonButton routerLink="/">Return to the Herald</IonButton>
+        </IonContent>
+      )}
     </IonPage>
   );
 };
