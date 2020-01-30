@@ -50,13 +50,7 @@ const LoginForm = props => {
             </IonItem>
             <IonButton type="submit">Log in</IonButton>
           </form>
-          <IonButton
-            onClick={() => {
-              props.history.push("/home");
-            }}
-          >
-            Return to the Herald
-          </IonButton>
+          <IonButton routerLink="/login">Return to the Herald</IonButton>
         </IonContent>
       )}
     </IonPage>
