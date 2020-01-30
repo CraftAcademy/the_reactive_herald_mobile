@@ -20,6 +20,7 @@ const LoginForm = props => {
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
+        props.history.push('/home')
         props.changeAuthenticated(!props.authenticated);
         props.changeMessage(`Logged in as: ${userDatas.data.email}`);
       })
@@ -30,16 +31,12 @@ const LoginForm = props => {
 
   return (
     <IonPage>
-      <>
         <IonHeader>
           <IonToolbar>
             <IonTitle id="header" routerLink="/home">The Reactive Herald </IonTitle>
           </IonToolbar>
         </IonHeader>
-      </>
-
-      <>
-        {!props.authenticated ? (
+        {!props.authenticated && 
           <IonContent>
             <form onSubmit={onLogin}>
               <IonItem>
@@ -53,14 +50,7 @@ const LoginForm = props => {
               <IonButton type="submit">Log in</IonButton>
             </form>
           </IonContent>
-        ) : (
-          <IonContent>
-            <IonButton routerLink="/home">Return to The Herald</IonButton>
-            <br />
-            <IonText>{props.message}</IonText>
-          </IonContent>
-        )}
-      </>
+        }
     </IonPage>
   );
 };
