@@ -39,6 +39,12 @@ const Home = props => {
     getArticles();
   }, []);
 
+  useEffect(() => {
+    getArticles();
+  }, [props.currentArticle]);
+
+  const onClickHandler = () => {};
+
   let articleItems;
   if (articles.length > 0) {
     articleItems = articles.map(article => {
@@ -79,7 +85,9 @@ const Home = props => {
 
 const mapStateToProps = state => ({
   message: state.message,
-  authenticated: state.authenticated
+  authenticated: state.authenticated,
+  currentArticle: state.currentArticle,
+  currentArticleId: state.currentArticleId
 });
 
 const mapDispatchToProps = dispatch => {

@@ -4,9 +4,7 @@ import {
   IonTitle,
   IonToolbar,
   IonContent,
-  IonList,
   IonItem,
-  IonLabel,
   IonButton,
   IonPage,
   IonText
@@ -34,7 +32,7 @@ const ShowArticle = props => {
 
   useEffect(() => {
     getCurrentArticle(props.currentArticleId, props.language);
-  }, []);
+  }, [props.currentArticleId]);
 
   return (
     <IonPage>
@@ -51,13 +49,22 @@ const ShowArticle = props => {
             <IonText>
               <h3>{currentArticle.title}</h3>
               {currentArticle.body}
-              {currentArticle.image}
+              <img src={currentArticle.image}></img>
             </IonText>
           </IonItem>
           {!props.authenticated && (
             <IonButton routerLink="/login">Login to subscribe</IonButton>
           )}
-          <IonButton routerLink="/">Return to the Herald</IonButton>
+          <IonButton
+            onClick={() => {
+              props.history.push("/home");
+            }}
+          >
+            {/* <IonButton
+            onClick={onReturnHandler}
+          > */}
+            Return to the Herald
+          </IonButton>
         </IonContent>
       )}
     </IonPage>
