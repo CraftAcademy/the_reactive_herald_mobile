@@ -6,13 +6,16 @@ import {
   IonToolbar,
   IonItem,
   IonList,
-  IonButton
+  IonButton,
+  IonText
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import auth from "../services/auth";
 import "../theme/variables.css";
 
-const Home = () => {
+const Home = props => {
   const [articles, setArticles] = useState({});
 
   const getArticles = async () => {
@@ -20,6 +23,18 @@ const Home = () => {
       "https://reactive-herald-api.herokuapp.com/api/v1/articles"
     );
     setArticles(resp.data.articles);
+  };
+
+  const onLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        props.changeMessage("");
+        props.changeAuthenticated(!props.authenticated);
+      })
+      .catch(error => {
+        props.changeMessage(error.message);
+      });
   };
 
   useEffect(() => {
@@ -44,15 +59,33 @@ const Home = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>The Reactive Herald </IonTitle>
+          <IonTitle id="header">The Reactive Herald</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonButton routerLink="/login">Login</IonButton>
-      <IonContent className="ion-padding">
+      {!props.authenticated && <IonButton routerLink="/login">Login</IonButton>}
+      {props.authenticated && <IonButton onClick={onLogout}>Log out</IonButton>}
+      <IonContent>
         <IonList>{articleItems}</IonList>
       </IonContent>
+      <IonText>{props.message}</IonText>
     </IonPage>
   );
 };
 
-export default Home;
+const mapStateToProps = state => ({
+  message: state.message,
+  authenticated: state.authenticated
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeMessage: msg => {
+      dispatch({ type: "CHANGE_MESSAGE", payload: msg });
+    },
+    changeAuthenticated: auth => {
+      dispatch({ type: "CHANGE_AUTH", payload: auth });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
