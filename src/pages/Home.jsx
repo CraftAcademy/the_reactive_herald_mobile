@@ -1,18 +1,20 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonList } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonList } from '@ionic/react';
 import React,{useEffect, useState} from 'react';
 import axios from 'axios';
 import '../theme/variables.css'
 
 const Home = () => {
 const [articles, setArticles] = useState ({})
-  useEffect(() => {
-    getArticles()
-    }, [])
 
   const getArticles = async () => {
     let resp = await axios.get('https://reactive-herald-api.herokuapp.com/api/v1/articles')
     setArticles(resp.data.articles)
   }
+
+  useEffect(() => {
+    getArticles()
+    }, [])
+
   let articleItems
   if (articles.length > 0) {
   articleItems = articles.map(article => {
