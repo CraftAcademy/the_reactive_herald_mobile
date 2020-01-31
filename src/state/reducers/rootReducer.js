@@ -22,6 +22,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         currentArticleId: action.payload
       };
+    case "CHANGE_USER_ATTRIBUTES":
+      return {
+        ...state,
+        userAttrs: action.payload
+      };
     default:
       return {
         ...state

@@ -3,6 +3,7 @@ const initialState = {
   authenticated: false,
   language: "en",
   currentArticleId: "",
-  currentArticle: ""
+  currentArticle: "",
+  userAttrs: ""
 };
 export default initialState;

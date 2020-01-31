@@ -21,6 +21,7 @@ const LoginForm = props => {
       .then(userDatas => {
         props.history.push("/home");
         props.changeAuthenticated(!props.authenticated);
+        props.setUserAttrs(userDatas.data)
         props.changeMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
@@ -59,7 +60,8 @@ const LoginForm = props => {
 
 const mapStateToProps = state => ({
   message: state.message,
-  authenticated: state.authenticated
+  authenticated: state.authenticated,
+  lastPage: state.lastPage
 });
 
 const mapDispatchToProps = dispatch => {
@@ -69,6 +71,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeAuthenticated: auth => {
       dispatch({ type: "CHANGE_AUTH", payload: auth });
+    },
+    setUserAttrs: userAttrs => {
+      dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
     }
   };
 };

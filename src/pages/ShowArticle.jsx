@@ -14,12 +14,17 @@ import axios from "axios";
 
 const ShowArticle = props => {
   let [currentArticle, setCurrentArticle] = useState("");
+  let headers;
 
   const getCurrentArticle = async (id, language) => {
+    headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
     try {
-      const response = await axios.get(`/articles/${id}`, {
-        params: { locale: language }
+      const response = await axios({
+        url: `/articles/${id}`,
+        params: { locale: language },
+        headers: headers
       });
+
       setCurrentArticle(response.data.article);
     } catch (error) {
       if (error.message === "Network Error") {
@@ -35,9 +40,9 @@ const ShowArticle = props => {
   }, [props.currentArticleId]);
 
   const onReturnHandler = () => {
-    setCurrentArticle("")
-    props.history.push("/home")
-  }
+    setCurrentArticle("");
+    props.history.push("/home");
+  };
 
   return (
     <IonPage>
@@ -55,16 +60,19 @@ const ShowArticle = props => {
               <h3>{currentArticle.title}</h3>
               {currentArticle.body}
               <img src={currentArticle.image}></img>
+              {!props.userAttrs ? (
+                <p>You need to subscribe to read full article</p>
+              ) : props.userAttrs.role === null ? (
+                <p>You need to subscribe to read full article</p>
+              ) : (
+                <p></p>
+              )}
             </IonText>
           </IonItem>
           {!props.authenticated && (
             <IonButton routerLink="/login">Login to subscribe</IonButton>
           )}
-          <IonButton
-            onClick={onReturnHandler}
-          >
-            Return to the Herald
-          </IonButton>
+          <IonButton onClick={onReturnHandler}>Return to the Herald</IonButton>
         </IonContent>
       )}
     </IonPage>
@@ -76,7 +84,8 @@ const mapStateToProps = state => ({
   authenticated: state.authenticated,
   language: state.language,
   currentArticle: state.currentArticle,
-  currentArticleId: state.currentArticleId
+  currentArticleId: state.currentArticleId,
+  userAttrs: state.userAttrs
 });
 
 const mapDispatchToProps = dispatch => {
@@ -88,9 +97,6 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type: "CHANGE_AUTH", payload: auth });
     },
     changeCurrentArticle: article => {
-      dispatch({ type: "CHANGE_ARTICLE", payload: article });
-    },
-    changeCurrentArticleId: article => {
       dispatch({ type: "CHANGE_ARTICLE", payload: article });
     }
   };

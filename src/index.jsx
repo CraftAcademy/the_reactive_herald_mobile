@@ -11,6 +11,7 @@ const store = createStore(rootReducer);
 
 axios.defaults.baseURL = "https://reactive-herald-api.herokuapp.com/api/v1/";
 
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
