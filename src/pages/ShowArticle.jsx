@@ -34,6 +34,11 @@ const ShowArticle = props => {
     getCurrentArticle(props.currentArticleId, props.language);
   }, [props.currentArticleId]);
 
+  const onReturnHandler = () => {
+    setCurrentArticle("")
+    props.history.push("/home")
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -55,7 +60,11 @@ const ShowArticle = props => {
           {!props.authenticated && (
             <IonButton routerLink="/login">Login to subscribe</IonButton>
           )}
-          <IonButton routerLink="/home">Return to the Herald</IonButton>
+          <IonButton
+            onClick={onReturnHandler}
+          >
+            Return to the Herald
+          </IonButton>
         </IonContent>
       )}
     </IonPage>

@@ -43,8 +43,6 @@ const Home = props => {
     getArticles();
   }, [props.currentArticle]);
 
-  const onClickHandler = () => {};
-
   let articleItems;
   if (articles.length > 0) {
     articleItems = articles.map(article => {
