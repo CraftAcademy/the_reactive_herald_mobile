@@ -1,5 +1,9 @@
 const initialState = {
   message: "",
-  authenticated: false
-}
-export default initialState
+  authenticated: false,
+  language: "en",
+  currentArticleId: "",
+  currentArticle: "",
+  userAttrs: ""
+};
+export default initialState;

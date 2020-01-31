@@ -8,10 +8,25 @@ const rootReducer = (state = initialState, action) => {
         message: action.payload
       };
     case "CHANGE_AUTH":
-    return {
-      ...state,
-      authenticated: action.payload
-    };
+      return {
+        ...state,
+        authenticated: action.payload
+      };
+    case "CHANGE_ARTICLE":
+      return {
+        ...state,
+        currentArticle: action.payload
+      };
+    case "CHANGE_ARTICLE_ID":
+      return {
+        ...state,
+        currentArticleId: action.payload
+      };
+    case "CHANGE_USER_ATTRIBUTES":
+      return {
+        ...state,
+        userAttrs: action.payload
+      };
     default:
       return {
         ...state
@@ -19,4 +34,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer
+export default rootReducer;
